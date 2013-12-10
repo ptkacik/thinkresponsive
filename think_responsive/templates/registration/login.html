@@ -1,0 +1,40 @@
+{% extends "registration/registration_base.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block ng_app %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span6" style="margin: 0 auto 0 auto; float: none">
+                <h2 class="header-text">{% trans "Login" %}</h2>
+                <hr>
+                <form method="post" action="." class="white-label-form">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="fieldWrapper">
+                        {{ form.username.errors }}
+                        <label for="id_username">{% trans "Email" %}</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="fieldWrapper">
+                        {{ form.password.errors }}
+                        <label for="id_password">{% trans "Password" %}</label>
+                        {{ form.password }}
+                    </div>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <button type="submit" class="btn btn-primary wide-button">
+                    <b><i class="icon-signin icon-white"></i> {% trans "Login" %}</b>
+                    </button>
+                    <div class="fieldWrapper">
+                        <a href="{% url "auth_password_reset" %}" class="white-color">{% trans "Forgot your password?" %}</a>
+                        <a href="{% url "registration_register" %}" class="white-color">{% trans "Register a new account?" %}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

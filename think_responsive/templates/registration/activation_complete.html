@@ -1,0 +1,21 @@
+{% extends "registration/registration_base.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span6" style="margin: 0 auto 0 auto; float: none">
+                <h2 class="header-text">{% trans "Activation complete" %}</h2>
+                <hr/>
+                <p><span class="white-color">{% trans "You may now login with your username and password." %}</span></p>
+                <a class="btn" href="{% url "auth_login" %}">{% trans "Login now" %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

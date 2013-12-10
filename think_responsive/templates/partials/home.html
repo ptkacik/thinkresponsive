@@ -1,0 +1,305 @@
+{% load i18n %}
+
+{% block content %}
+
+<div class="settings-panel-wrapper hidden-phone">
+    <div class="setting-wrraper" style="top: 70px;">
+        <div class="settings-panel-url" ui-toggle="showHideLogin">
+            <div style="margin-left:10px; margin-top: 10px;">
+                <div class="row-fluid">
+                {% if user.is_authenticated %}
+                    <a class="btn btn-primary" ng-href="{% url 'auth_login' %}">
+                        <b>
+                            {% trans "Login" %}
+                        </b>
+                    </a>
+                    <a class="btn btn-warnng" ng-href="{% url 'auth_login' %}">
+                        <b>
+                            {% trans "Register" %}
+                        </b>
+                    </a>
+                    <a class="white-color" href="#myModal" role="button" data-toggle="modal" style="font-size: 12px;"><b> {% trans "why ??" %}</b></a>
+                {% else %}
+                    <a class="btn btn-primary" ng-href="{% url 'auth_login' %}">
+                        <b>
+                            {% trans "Account" %}
+                        </b>
+                    </a>
+                    <a class="btn btn-warnng" ng-href="{% url 'auth_logout' %}">
+                        <b>
+                            {% trans "Logout" %}
+                        </b>
+                    </a>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="settings-icon" data-original-title="Acoount" ui-jq="tooltip" ui-options="{placement: 'right'}">
+            <span class="white-color settings-link" ng-click="showHideLogin=!showHideLogin" >
+                <i class="icon-user"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="setting-wrraper" style="top: 125px;">
+        <div class="settings-panel-url" ui-toggle="showHideUrl">
+            <div style="margin-left:10px; margin-top: 10px;">
+                <div class="row-fluid">
+                    <form ng-submit="apply_changes()" class="form-horizontal pull-left" style="margin-bottom: 0px;">
+                        <span style="color: white; font-size: 12px">
+                            Url
+                        </span>
+
+                        <input type="text" placeholder="http://" ng-model="preview_url" class="input-xlarge url-input" ui-reset>
+                        <button class="btn btn-inverse" ng-click="apply_changes()"
+                            type="submit">
+                            <b><i class="icon-share-alt"></i></b>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-icon" data-original-title="Website url" ui-jq="tooltip" ui-options="{placement: 'right'}">
+            <span class="white-color settings-link" ng-click="showHideUrl=!showHideUrl">
+                <i class="icon-globe"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="setting-wrraper" style="top: 180px;">
+        <div class="settings-icon"  data-original-title="Rotate screen" ui-jq="tooltip" ui-options="{placement: 'right'}">
+            <span ng-click="apply_rotate()" class="white-color settings-link">
+                <i class="icon-refresh"></i>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="setting-wrraper">
+        <div class="settings-panel" ui-toggle="showHide">
+            <div style="margin-left:10px; margin-top: 10px;">
+                <div class="row-fluid">
+                    <label class="control-label">
+                        <span style="color: white; font-size: 12px">
+                            Width x Height [ px ]
+                        </span>
+                    </label>
+                    <input 
+                        id="inputWidth"
+                        class="size-input"
+                        type="number" placeholder="width"
+                        ng-model="preview_width">
+                    <input 
+                        id="inputHeight"
+                        class="size-input"
+                        type="number"
+                        placeholder="height"
+                        ng-model="preview_height">
+                </div>
+
+                <div class="row-fluid">
+                    <label class="control-label">
+                        <span style="color: white; font-size: 12px">
+                            {% trans "Resolution" %}
+                        </span>
+                    </label>
+
+                    <div style="margin-right: 10px;">
+                        <a class="btn dropdown-toggle btn-inverse btn-block" data-toggle="dropdown" href="#" data-original-title="Mobile phone" ui-jq="tooltip" ui-options="{placement: 'right'}">
+                            <i class="icon-mobile-phone icon-large"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            <li class="nav-header header-dropdown">
+                                Mobiles  
+                            </li>
+
+                            <li class="nav-header">
+                                Apple iPhone 3, 4    
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(320, 480, 1)">
+                                    320 x 480
+                                </a>
+                            </li>
+                            <li class="nav-header">
+                                Apple iPhone 5   
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(320, 568, 1)">
+                                    320 x 568
+                                </a>
+                            </li>
+                            <li class="nav-header">
+                                Samsung Galaxy SII
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(320, 533, 1)">
+                                    320 x 533
+                                </a>
+                            </li>
+
+                            <li class="nav-header">
+                                Samsung Galaxy SIII
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(360, 640, 1)">
+                                    360 x 640
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-right: 10px; margin-top: 5px; margin-bottom: 5px;">
+                        <a class="btn btn-block dropdown-toggle btn-inverse" data-toggle="dropdown" href="#" data-original-title="Tablet" ui-jq="tooltip" ui-options="{placement: 'right'}">
+                            <i class="icon-tablet icon-large"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            <li class="nav-header header-dropdown">
+                                Tablets  
+                            </li>
+                            <li class="nav-header">
+                                iPad   
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(768, 1024, 1)">
+                                    768 x 1024
+                                </a>
+                            </li>
+                            <li class="nav-header">
+                                Kindle Fire 
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(600, 800, 1)">
+                                    600 x 800
+                                </a>
+                            </li>
+                            <li class="nav-header">
+                                Google Nexus 7 
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(603, 966, 1)">
+                                    603 x 966
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-right: 10px;">
+                        <a class="btn btn-block dropdown-toggle btn-inverse" data-toggle="dropdown" href="#" data-original-title="Desktop" ui-jq="tooltip" ui-options="{placement: 'right'}">
+                            <i class="icon-desktop icon-large"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            <li class="nav-header header-dropdown">
+                                Desktops  
+                            </li>
+
+                            <li class="nav-header">
+                                10" 
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(1024, 600, 1)">
+                                    1024 x 600
+                                </a>
+                            </li>
+                            <li class="nav-header">
+                                12"  
+                            </li>
+                            <li>
+                                <a ng-click="apply_changes(1024, 768, 1)">
+                                    1024 x 768
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row-fluid">
+                    <label class="control-label">
+                        <span style="color: white; font-size: 12px">
+                            {% trans "Device color" %}
+                        </span>
+                    </label>
+                    <ul class="unstyled">
+                        <li ng-click="set_color(c)" ng-style="{background: c}" class="pull-left device-color" ng-repeat="c in colors" ></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="settings-icon"  data-original-title="Screen settings" ui-jq="tooltip" ui-options="{placement: 'right'}">
+            <span class="white-color settings-link" ng-click="showHide=!showHide">
+                <i class="icon-cogs"></i>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid hidden-phone" style="padding:0px;">
+    <div class="row-fluid" style="margin-top: 20px;">
+        <div class="span12" style="text-align: center;">
+            {% verbatim %}
+            <div class="device-frame-wrapper {{ preview_class }}" ng-style="preview_styles()">
+                <iframe 
+                    ng-src="{{ frame_url }}" 
+                    class="preview-frame" 
+                >
+                </iframe>
+            </div>
+            {% endverbatim %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="background: white; margin-top: 20px;">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <h3> {% trans "Features of this website" %}</h3>
+
+            Lorem Ipsum je fiktívny text, používaný pri návrhu tlačovín a typografie. Lorem Ipsum je štandardným výplňovým textom už od 16. storočia, keď neznámy tlačiar zobral sadzobnicu plnú tlačových znakov a pomiešal ich, aby tak vytvoril vzorkovú knihu. Prežil nielen päť storočí, ale aj skok do elektronickej sadzby, a pritom zostal v podstate nezmenený. Spopularizovaný bol v 60-tych rokoch 20.storočia, vydaním hárkov Letraset, ktoré obsahovali pasáže Lorem Ipsum, a neskôr aj publikačným softvérom ako Aldus PageMaker, ktorý obsahoval verzie Lorem Ipsum.
+        </div>
+    </div>
+
+
+    <div class="row-fluid">
+        <div class="span12">
+        <h3> {% trans "Why responsive design?" %}</h3>
+            <blockquote>
+                <p>Day by day, the number of devices, platforms, 
+                and browsers that need to work with your site grows. 
+                Responsive web design represents a fundamental shift 
+                in how we’ll build websites for the decade to come.”</p>
+                <small><cite title="Source Title">Jeffrey Veen</cite></small>
+            </blockquote>
+
+        </div>
+    </div>
+
+</div>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"> {% trans "Why should I register ?" %}</h3>
+  </div>
+  <div class="modal-body">
+    <ol class="unstyled">
+        <li> <i class="icon-ok"></i> {% trans "You can create collection of your websites" %}</li>
+        <li> <i class="icon-ok"></i>{% trans "You can add and save new screen resolution" %}</li>
+        <li> <i class="icon-ok"></i>{% trans "You can choose screen resolution and save snapshot of your website" %}</li>
+        <li> <i class="icon-ok"></i>{% trans "You can publish your responsive website" %}</li>
+    </ol>
+    <p></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+    <a class="btn btn-primary btn-large" href="{% url "registration_register" %}"> {% trans "Register" %} </a>
+  </div>
+</div>
+{% endblock %}

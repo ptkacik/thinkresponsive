@@ -1,0 +1,262 @@
+{% load i18n %}
+
+{% block content %}
+
+<div class="container hidden-phone">
+    <div class="row-fluid">
+        <form ng-submit="apply_changes()" class="form-horizontal setting-form">
+            <div class="span6 mt-5">
+                <input type="text" placeholder="http://www.thinkresponsive.sk" ng-model="preview_url" class="input-block-level url-input pull-left" ui-reset>
+            </div>
+            <div class="span1 url-buttons screen-buttons">
+                <button class="btn btn-block btn-inverse" ng-click="apply_changes()"
+                    type="submit">
+                    <b><i class="icon-share-alt"></i></b>
+                </button>
+            </div>
+
+            <div class="pull-right span5 toolbar">
+                <div class="btn-group span2 url-buttons screen-buttons pull-right" style="margin-left: 10px;">
+                    <button class="btn btn-block btn-inverse" data-original-title="Settings" ui-jq="tooltip" ui-options="{placement: 'top'}" ng-click="showHide=!showHide">
+                        <b><i class="icon-cogs"></i></b>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" ui-toggle="showHide" role="menu" aria-labelledby="dropdownMenu">
+                        <li class="nav-header header-dropdown">
+                            width x height [ px ]  
+                        </li>
+                        <li>
+                            <div class="row-fluid" style="margin-left:10px; margin-bottom: 10px;">
+                                <input 
+                                    id="inputWidth"
+                                    class="size-input"
+                                    type="number" placeholder="width"
+                                    ng-model="preview_width">
+                                <input 
+                                    id="inputHeight"
+                                    class="size-input"
+                                    type="number"
+                                    placeholder="height"
+                                    ng-model="preview_height">
+                            </div>
+                        </li>
+                        {% comment %}
+                        <li class="nav-header header-dropdown">
+                            {% trans "Download screenshot" %} 
+                        </li>
+                        <li>
+                            <div class="screen-buttons" style="margin-right: 10px;">
+                                <button class="btn btn-block btn-primary" href="#myModal" role="button" data-toggle="modal">
+                                    <b><i class="icon-download"></i></b>
+                                </button>
+                            </div>
+                        </li>
+                        {% endcomment %}
+                    </ul>
+                </div>
+
+                <div class="btn-group span2 url-buttons screen-buttons pull-right">
+                    <button class="btn btn-block dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100">
+                        <b><i class="icon-desktop"></i></b>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right spec-dropdown-menu">
+                        <!-- dropdown menu links -->
+                        <li class="nav-header header-dropdown">
+                            Desktops  
+                        </li>
+
+                        <li class="nav-header">
+                            10" 
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(1024, 600, 1)">
+                                1024 x 600
+                            </a>
+                        </li>
+                        <li class="nav-header">
+                            12"  
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(1024, 768, 1)">
+                                1024 x 768
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="btn-group span2 url-buttons screen-buttons pull-right">
+                    <button class="btn btn-block dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100">
+                        <b><i class="icon-tablet"></i></b>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu spec-dropdown-menu">
+                        <!-- dropdown menu links -->
+                        <li class="nav-header header-dropdown">
+                            Tablets  
+                        </li>
+                        <li class="nav-header">
+                            iPad   
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(768, 1024, 1)">
+                                768 x 1024
+                            </a>
+                        </li>
+                        <li class="nav-header">
+                            Kindle Fire 
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(600, 800, 1)">
+                                600 x 800
+                            </a>
+                        </li>
+                        <li class="nav-header">
+                            Google Nexus 7 
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(603, 966, 1)">
+                                603 x 966
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group span2 url-buttons screen-buttons pull-right">
+                    <button class="btn btn-block dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100">
+                        <b><i class="icon-mobile-phone"></i></b>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu spec-dropdown-menu">
+                        <!-- dropdown menu links -->
+                        <li class="nav-header header-dropdown">
+                            Mobiles  
+                        </li>
+
+                        <li class="nav-header">
+                            Apple iPhone 3, 4    
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(320, 480, 1)">
+                                320 x 480
+                            </a>
+                        </li>
+                        <li class="nav-header">
+                            Apple iPhone 5   
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(320, 568, 1)">
+                                320 x 568
+                            </a>
+                        </li>
+                        <li class="nav-header">
+                            Samsung Galaxy SII
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(320, 533, 1)">
+                                320 x 533
+                            </a>
+                        </li>
+
+                        <li class="nav-header">
+                            Samsung Galaxy SIII
+                        </li>
+                        <li>
+                            <a ng-click="apply_changes(360, 640, 1)">
+                                360 x 640
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group span2 url-buttons screen-buttons pull-right">
+                    <button class="btn btn-block btn-info" ng-click="apply_rotate()" data-original-title="Rotate screen" ui-jq="tooltip" ui-options="{placement: 'top'}" >
+                        <b><i class="icon-refresh"></i></b>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container-fluid" style="position: relative">
+
+    <div class="row-fluid" style="margin-top: 40px;">
+        <div class="span12  hidden-phone" style="text-align: center;  min-height: 600px;">
+            {% verbatim %}
+            <div class="device-frame-wrapper {{ preview_class }}" ng-style="preview_styles()">
+                <div class="row-fluid device-panel">
+                    <div class="span4 pull-left left-panel">
+                        <small> <b>{{ preview_width }} x {{ preview_height }}</b></small>
+                    </div>
+            {% endverbatim %}
+                    <div class="span4 pull-right right-panel">
+                        <i class="icon-signal"></i>
+                        <small><b>{% now "h:i" %}</b></small>
+                    </div>
+                </div>
+            {% verbatim %}
+                <iframe 
+                    ng-src="{{ frame_url }}" 
+                    class="preview-frame" 
+                >
+                </iframe>
+            {% endverbatim %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% comment %}
+  
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"> {% trans "Download webiste" %}</h3>
+  </div>
+  <div class="modal-body">
+    <form method="POST" action="#"> {% csrf_token %}
+        <dl class="dl-horizontal">
+            <dt>
+                <b>{% trans "Page:" %}</b> 
+            </dt>
+            <dd>
+                {% verbatim %} {{ frame_url }} {% endverbatim  %}
+                <input type="hidden" name="url" value="{% verbatim %}{{ frame_url }}{% endverbatim  %}">
+            </dd>
+            <dt>
+                <b>{% trans "Screen:" %}</b> 
+            </dt>
+            <dd>
+                {% verbatim %} {{ preview_width }} x {{ preview_width }} px {% endverbatim  %}
+            </dd>
+            <dt>
+                <b>{% trans "View mode:" %}</b> 
+            </dt>
+            <dd>
+                {% verbatim %}</b> {{ preview_class }} {% endverbatim %}
+            </dd>
+            <dt>
+                <b>{% trans "Format:" %}</b> 
+            </dt>
+            <dd>
+                pdf
+            </dd>
+        </dl>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+    <a class="btn btn-primary btn-large" href="{% url "registration_register" %}"> {% trans "Register" %} </a>
+  </div>
+</div>
+{% endcomment %}
+
+
+
+
+  
+{% endblock %}

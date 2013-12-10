@@ -1,0 +1,11 @@
+Django==1.5
+argparse==1.2.1
+django-appconf==0.6
+django-compressor==1.2
+django-debug-toolbar==0.9.4
+django-registration==0.8
+-e git://github.com/bitmazk/django-registration-email@4f58a7a53a6b04b09825386c886872fd7ee518f8#egg=django_registration_email-dev
+six==1.2.0
+webkit2png==0.8.2
+wsgiref==0.1.2
+yolk==0.4.3
